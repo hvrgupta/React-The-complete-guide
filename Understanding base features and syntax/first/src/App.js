@@ -16,27 +16,51 @@ class App extends Component {
     otherState : 'Some Value'
   }
   
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     // console.log('Clicked');
     // DON'T Do this to change value    this.state.persons[0].name = 'Harsh';
     this.setState({
       persons : [
-       {name : 'Maxmillian', age : 28}, //It will check state and update only those values which are changed
+       {name : newName, age : 28}, //It will check state and update only those values which are changed
        {name : 'Manu', age : 29},
        {name : 'Stephanie', age : 27}
       ]
     });
   }
 
+  changeNameHandler = (event) => {
+    this.setState({
+      persons : [
+       {name : 'Max', age : 28}, //It will check state and update only those values which are changed
+       {name : event.target.value, age : 29},
+       {name : 'Stephanie', age : 27}
+      ]
+    });
+  }
+
   render() {
+    const style = {
+      backgroundColor : 'white',
+      border : '1px solid blue',
+      font : 'inherit',
+      padding : '8px',
+      cursor : 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi I'm a React app</h1>
         <p>This is Working.</p>
-        <button onClick = {this.switchNameHandler}>Switch name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies : Racing</Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        <button style={style}
+        onClick = {() => this.switchNameHandler('Maxmillian')}>Switch name</button>
+        <Person name={this.state.persons[0].name} 
+          age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} 
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this,'Max!!')}
+          changed={this.changeNameHandler}>My Hobbies : Racing</Person>
+        <Person name={this.state.persons[2].name} 
+          age={this.state.persons[2].age} />
       </div>
     );
     //Below code is code which is complied into JS Code of above code.
@@ -45,18 +69,6 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
