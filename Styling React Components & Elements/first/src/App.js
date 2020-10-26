@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 // import styled from 'styled-components';
 // import Radium, { StyleRoot } from 'radium';
-import Person from './Person/Person';
+import Person from './Persons/Person/Person';
 
 class App extends Component {
   
